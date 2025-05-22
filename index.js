@@ -32,15 +32,31 @@ const upload = multer({
   },
   fileFilter: (req, file, cb) => {
     const allowedTypes = [
-       'application/pdf',
-       'video/mp4',
-       'video/quicktime' // ✅ esto permite archivos .mov (iOS)
-      ];
+  // Documentos
+  'application/pdf',
+  'application/msword', // .doc
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
+  'application/vnd.ms-excel', // .xls
+  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // .xlsx
+  'application/vnd.ms-powerpoint', // .ppt
+  'application/vnd.openxmlformats-officedocument.presentationml.presentation', // .pptx
+  'text/plain', // .txt
+  // Imágenes
+  'image/jpeg',
+  'image/png',
+  'image/gif',
+  'image/webp',
+  'image/svg+xml',
+  // Video
+  'video/mp4',
+  'video/quicktime'
+];
+
     
     if (allowedTypes.includes(file.mimetype)) {
       cb(null, true);
     } else {
-      cb(new Error('Invalid file type. Only PDF and MP4 files are allowed.'));
+      cb(new Error('Invalid file type. Only documents, images, and videos are allowed.'));
     }
   }
 });
