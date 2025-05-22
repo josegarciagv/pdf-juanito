@@ -32,9 +32,10 @@ const upload = multer({
   },
   fileFilter: (req, file, cb) => {
     const allowedTypes = [
-      'application/pdf',
-      'video/mp4'
-    ];
+       'application/pdf',
+       'video/mp4',
+       'video/quicktime' // ✅ esto permite archivos .mov (iOS)
+      ];
     
     if (allowedTypes.includes(file.mimetype)) {
       cb(null, true);
